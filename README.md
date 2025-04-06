@@ -1,4 +1,4 @@
-# ORMNet
+# CaRe-Ego
 [CaRe-Ego: Contact-aware Relationship Modeling for Egocentric Interactive Hand-object Segmentation](https://arxiv.org/abs/2407.05576)
 
 Yuejiao Su, Yi Wang, and Lap-Pui Chau
