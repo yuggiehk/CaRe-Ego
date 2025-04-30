@@ -23,8 +23,9 @@ Comparison results on the EgoHOS out-of-domain test set.
 ![2](https://github.com/user-attachments/assets/4b9cf1c2-00cc-4350-8dc7-736a78729366)
 
 
-Comparison results on the mini-HOI4D dataset. The dataset of mini-HOI4D will be released soon.
-![3](https://github.com/user-attachments/assets/cbe93d49-e7d7-4199-b35c-91ca30038fa6)
+Comparison results on the out-of-distribution mini-HOI4D dataset. The dataset of mini-HOI4D will be released soon.
+![3](https://github.com/user-attachments/assets/c742e2cd-69e2-4822-bc80-210a848a6950)
+
 
 
 
