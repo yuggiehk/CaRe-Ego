@@ -6,13 +6,13 @@ Yuejiao Su, Yi Wang, and Lap-Pui Chau
 
 ## Video Demonstrations
 
-![dynamic_video_results](https://github.com/user-attachments/assets/b134b5b1-5ba7-452d-8923-fb7d8777fa4c#pic_center)
+![dynamic_video_results](https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video1.gif)
 
-![2](https://github.com/user-attachments/assets/d37eb597-cc62-4ecf-a8f0-44b5af3a6f11)
+![2](https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video2.gif)
 
-![3](https://github.com/user-attachments/assets/03dde166-decc-40f5-a9de-e4b0883500da)
+![3](https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video3.gif)
 
-![4](https://github.com/user-attachments/assets/e36dda39-3505-442b-9f42-d3c349250d52)
+![4](https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video4.gif)
 
 ## Qualitative Results
 Comparison results on the EgoHOS in-domain test set.
