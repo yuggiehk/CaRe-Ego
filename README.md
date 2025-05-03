@@ -33,19 +33,19 @@ Comparison results on the mini-HOI4D test set measured by IoU/Acc and mIoU/mAcc.
 Although the CaRe-Ego is performed on Egocentric images, we can validate it on out-of-distribution videos frame-by-frame.
 
 <div align="center">
-    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video1.gif" alt="My Image" height="400"/>
+    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video1.gif" alt="My Image" />
 </div>
 
 <div align="center">
-    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video2.gif" alt="My Image" height="400"/>
+    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video2.gif" alt="My Image" />
 </div>
 
 <div align="center">
-    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video3.gif" alt="My Image" height="400"/>
+    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video3.gif" alt="My Image" />
 </div>
 
 <div align="center">
-    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video4.gif" alt="My Image" height="400"/>
+    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video4.gif" alt="My Image" />
 </div>
 
 
