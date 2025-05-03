@@ -5,13 +5,19 @@ Yuejiao Su, Yi Wang, and Lap-Pui Chau
 
 ## Qualitative Results
 Comparison results on the EgoHOS in-domain test set.
-![1](https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/1.png)
+<div align="center">
+    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/1.png" alt="My Image" />
+</div>
 
 Comparison results on the EgoHOS out-of-domain test set.
-![2](https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/2.png)
+<div align="center">
+    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/2.png" alt="My Image" />
+</div>
 
 Comparison results on the out-of-distribution mini-HOI4D dataset. The dataset of mini-HOI4D will be released soon.
-![3](https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/3.png)
+<div align="center">
+    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/3.png" alt="My Image" />
+</div>
 
 ## Quantitative Results
 Comparison results on the EgoHOS in-domain test set measured by IoU/Acc and mIoU/mAcc. 
