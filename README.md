@@ -24,7 +24,7 @@ Comparison results on the mini-HOI4D test set measured by IoU/Acc and mIoU/mAcc.
 ![图片_20240718105954](https://github.com/user-attachments/assets/d831c34b-568c-435e-9f1b-7264f13b35a2)
 
 ## Video Demonstrations
-Although the CaRe-Ego is performed on Egocentric images, we can 
+Although the CaRe-Ego is performed on Egocentric images, we can validate it on out-of-distribution videos frame-by-frame.
 
 ![dynamic_video_results](https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video1.gif)
 
