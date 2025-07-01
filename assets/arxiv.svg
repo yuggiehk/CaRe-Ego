@@ -1,25 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="86" height="20" role="img" aria-label="arXiv: CaRe-Ego">
-  <title>arXiv: CaRe-Ego</title>
-  <linearGradient id="s" x2="0" y2="100%">
-    <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
-    <stop offset="1" stop-opacity=".1"/>
-  </linearGradient>
-  <clipPath id="r">
-    <rect width="86" height="20" rx="3" fill="#fff"/>
-  </clipPath>
-  <g clip-path="url(#r)">
-    <rect width="39" height="20" fill="#555"/>
-    <rect x="39" width="47" height="20" fill="#97ca00"/>
-    <rect width="86" height="20" fill="url(#s)"/>
-  </g>
-  <g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="110">
-    <!-- arXiv 左侧 -->
-    <text aria-hidden="true" x="205" y="150" fill="#010101" fill-opacity=".3"
-          transform="scale(.1)" textLength="290">arXiv</text>
-    <text x="205" y="140" transform="scale(.1)" fill="#fff" textLength="290">arXiv</text>
-    <!-- CaRe-Ego 右侧，x往右放一点(比如630)，与textLength匹配 -->
-    <text aria-hidden="true" x="630" y="150" fill="#010101" fill-opacity=".3"
-          transform="scale(.1)" textLength="370">CaRe-Ego</text>
-    <text x="630" y="140" transform="scale(.1)" fill="#fff" textLength="370">CaRe-Ego</text>
-  </g>
+    <title>arXiv: CaRe-Ego</title>
+    <linearGradient id="s" x2="0" y2="100%">
+        <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+        <stop offset="1" stop-opacity=".1"/>
+    </linearGradient>
+    <clipPath id="r">
+        <rect width="86" height="20" rx="3" fill="#fff"/>
+    </clipPath>
+    <g clip-path="url(#r)">
+        <rect width="39" height="20" fill="#555"/>
+        <rect x="39" width="47" height="20" fill="#97ca00"/>
+        <rect width="86" height="20" fill="url(#s)"/>
+    </g>
+    <g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="110">
+        <!-- arXiv 左侧 -->
+        <text aria-hidden="true" x="205" y="150" fill="#010101" fill-opacity=".3"
+              transform="scale(.1)" textLength="290">arXiv</text>
+        <text x="205" y="140" transform="scale(.1)" fill="#fff" textLength="290">arXiv</text>
+        <!-- CaRe-Ego 右侧，x往右放一点并增大textLength -->
+        <text aria-hidden="true" x="700" y="150" fill="#010101" fill-opacity=".3"
+              transform="scale(.1)" textLength="400">CaRe-Ego</text>
+        <text x="700" y="140" transform="scale(.1)" fill="#fff" textLength="400">CaRe-Ego</text>
+    </g>
 </svg>
