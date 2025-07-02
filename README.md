@@ -42,7 +42,7 @@ Comparison results on the EgoHOS **in-domain test set**.
     <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/1.png" alt="My Image" height="400"/>
 </div>
 
-Comparison results on the EgoHOS **out-of-domain test set** and **out-of-distribution mini-HOI4D dataset**. The mini-HOI4D dataset is derived from the [HOI4D dataset](https://hoi4d.github.io/). You can download mini-HOI4D [here]().
+Comparison results on the EgoHOS **out-of-domain test set** (left) and **out-of-distribution mini-HOI4D dataset** (right). The mini-HOI4D dataset is derived from the [HOI4D dataset](https://hoi4d.github.io/). You can download mini-HOI4D [here]().
 <div align="center">
     <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/51.png?raw=true" alt="My Image" height="400"/>
 </div>
