@@ -2,6 +2,8 @@
 [CaRe-Ego: Contact-aware Relationship Modeling for Egocentric Interactive Hand-object Segmentation](https://arxiv.org/abs/2407.05576)
 
 [![Logo](https://raw.githubusercontent.com/yuggiehk/CaRe-Ego/17be80be91e4c5cce0a2c2a05fca1510d5722276/assets/arxiv.svg)](https://arxiv.org/abs/2407.05576)
+[![Logo](https://raw.githubusercontent.com/yuggiehk/CaRe-Ego/58a2692e8eaf8931b3556d0c56dd86454066c83e/assets/projectpage.svg)](https://yuggiehk.github.io/CaRe-Ego/)
+
 
 Yuejiao Su, Yi Wang, and Lap-Pui Chau
 
