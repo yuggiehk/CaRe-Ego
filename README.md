@@ -39,12 +39,12 @@ Although the CaRe-Ego is performed on Egocentric images, we can validate it on *
 ## Qualitative Results
 Comparison results on the EgoHOS **in-domain test set**.
 <div align="center">
-    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/1.png" alt="My Image" height="400"/>
+    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/1.png" style="max-width: 100%; height: auto;">
 </div>
 
 Comparison results on the EgoHOS **out-of-domain test set** (left) and **out-of-distribution mini-HOI4D dataset** (right). The mini-HOI4D dataset is derived from the [HOI4D dataset](https://hoi4d.github.io/). You can download mini-HOI4D [here]().
 <div align="center">
-    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/51.png?raw=true" alt="My Image" height="400"/>
+    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/51.png?raw=true" style="max-width: 100%; height: auto;">
 </div>
 
 
