@@ -18,7 +18,7 @@ Egocentric Interactive hand-object segmentation (EgoIHOS) requires segmenting ha
 </div>
 
 ## Video Demonstrations
-Although the CaRe-Ego is performed on Egocentric images, we can validate it on **out-of-distribution videos** frame-by-frame.
+Although the CaRe-Ego is performed on Egocentric images, we can validate it on **out-of-distribution videos** frame-by-frame. We validate the effectiveness of CaRe-Ego on several out-of-distribution videos from the [THU-READ dataset](https://ivg.au.tsinghua.edu.cn/dataset/THU_READ.php).
 
 <div align="center">
     <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/video1.gif" alt="My Image" />
