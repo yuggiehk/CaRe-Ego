@@ -37,7 +37,7 @@
     <header>
         <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
             <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"><span
-                        class="font-weight-bold">ANNEXE </span>CVPR2025</a> <button class="navbar-toggler collapsed ml-auto"
+                        class="font-weight-bold">CaRe-Ego </span> </a> <button class="navbar-toggler collapsed ml-auto"
                     type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
                     aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span
@@ -48,17 +48,13 @@
         </nav>
     </header>
     <div class="container mt-5">
-        <h2 align="center" class="font-weight-bold"> ANNEXE: Unified Analyzing, Answering, and Pixel Grounding for
-            Egocentric Interaction </h2>
-        <p style="text-align: center;" class="font-weight-normal"> CVPR 2025 </p>
+        <h2 align="center" class="font-weight-bold"> CaRe-Ego: Contact-aware Relationship Modeling for Egocentric Interactive Hand-object Segmentation </h2>
+        <p style="text-align: center;" class="font-weight-normal">  </p>
         <p style="text-align: center; font-weight: normal">
             <a href="https://github.com/yuggiehk/annexe" style="color: #0069d1" rel="external nofollow noopener"
-                target="_blank"> Yuejiao Su</a> 
+                target="_blank"> Yuejiao Su</a> &nbsp
             <a href="https://scholar.google.com/citations?user=MAG909MAAAAJ&hl=en" style="color: #0069d1"
                 rel="external nofollow noopener" target="_blank"> Yi Wang</a> &nbsp
-            <a href="" style="color: #0069d1" rel="external nofollow noopener" target="_blank"> Qiongyang Hu</a> &nbsp
-            <a href="https://scholar.google.com/citations?user=37S_Zz4AAAAJ&hl=zh-CN" style="color: #0069d1"
-                rel="external nofollow noopener" target="_blank"> Chuang Yang </a> &nbsp
             <a href="https://scholar.google.com/citations?user=MYREIH0AAAAJ&hl=en" style="color: #0069d1"
                 rel="external nofollow noopener" target="_blank"> Lap-Pui Chau</a>
         </p>
@@ -66,22 +62,13 @@
         <div class="column" style="text-align: center;">
             <div class="publication-links">
                 <span class="link-block">
-                    <a href="https://arxiv.org/abs/2504.01472" target="_blank"
+                    <a href="https://arxiv.org/abs/2407.05576" target="_blank"
                         class="external-link button is-normal is-rounded is-dark" rel="external nofollow noopener">
                         <span class="icon"> <i class="fas fa-file-pdf"></i> </span> <span>Arxiv</span> </a> </span> &nbsp
                 <span class="link-block">
-                    <a href="https://arxiv.org/abs/2504.01472" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark"> <span class="icon"> <i
-                                class="fas fa-file-pdf"></i> </span> <span>Supp</span> </a> </span> &nbsp
-                <span class="link-block">
-                    <a href="https://github.com/yuggiehk/annexe" target="_blank"
+                    <a href="https://github.com/yuggiehk/CaRe-Ego" target="_blank"
                         class="external-link button is-normal is-rounded is-dark" rel="external nofollow noopener">
                         <span class="icon"> <i class="fab fa-github"></i> </span> <span>Code</span> </a> </span> &nbsp
-                <span class="link-block">
-                    <a href="https://github.com/yuggiehk/annexe/blob/main/imgs/poster_cvpr25%E2%80%94annexe.pdf"
-                        target="_blank" class="external-link button is-normal is-rounded is-dark"
-                        rel="external nofollow noopener"> <span class="icon" style="text-decoration: none"> <i
-                                class="fas fa-file-powerpoint"></i> </span> <span>Poster</span> </a> </span>
             </div>
         </div>
 
@@ -93,82 +80,64 @@
         </style>
 
         <h3> Abstract </h3>
-        <p>Egocentric interaction perception is one of the essential branches in investigating human-environment
-            interaction, which lays the basis for developing next-generation intelligent systems. However, existing
-            egocentric interaction understanding methods cannot yield coherent textual and pixel-level responses
-            simultaneously according to user queries, which lacks flexibility for varying downstream application
-            requirements. To comprehend egocentric interactions exhaustively, this paper presents a novel task named
-            Egocentric Interaction Reasoning and pixel Grounding (Ego-IRG). Taking an egocentric image with the query as
-            input, Ego-IRG is the first task that aims to resolve the interactions through three crucial steps:
-            analyzing, answering, and pixel grounding, which results in fluent textual and fine-grained pixel-level
-            responses. Another challenge is that existing datasets cannot meet the conditions for the Ego-IRG task. To
-            address this limitation, this paper creates the Ego-IRGBench dataset based on extensive manual efforts,
-            which includes over 20k egocentric images with 1.6 million queries and corresponding multimodal responses
-            about interactions. Moreover, we design a unified ANNEXE model to generate text- and pixel-level outputs
-            utilizing multimodal large language models, which enables a comprehensive interpretation of egocentric
-            interactions. The experiments on the Ego-IRGBench exhibit the effectiveness of our ANNEXE model compared
-            with other works.</p>
+        <p>Egocentric Interactive hand-object segmentation (EgoIHOS) requires the segmentation of hands and interacting objects in egocentric images, which is crucial for understanding human behavior in assistive systems. Previous methods typically recognize hands and interacting objects as distinct semantic categories based solely on visual features, or simply use hand predictions as auxiliary cues for object segmentation. Despite the promising progress achieved by these methods, they fail to adequately model the interactive relationships between hands and objects while ignoring the coupled physical relationships among object categories, ultimately constraining their segmentation performance. To make up for the shortcomings of existing methods, we propose a novel method called CaRe-Ego that achieves state-of-the-art performance by emphasizing the contact between hands and objects from two aspects. First, we introduce a Hand-guided Object Feature Enhancer (HOFE) to establish the hand-object interactive relationships to extract more contact-relevant and discriminative object features. Second, we design the Contact-centric Object Decoupling Strategy (CODS) to explicitly model and disentangle coupling relationships among object categories, thereby emphasizing contact-aware feature learning. Experiments on various in-domain and out-of-domain test sets show that Care-Ego significantly outperforms existing methods with robust generalization capability.</p>
         <hr>
-        <h3> Ego-IRG Task </h3>
+        <h3> CaRe-Ego Framework </h3>
         <center>
             <figure>
-                <div id="projectid"> <img src="https://github.com/yuggiehk/annexe/blob/main/imgs/fig1.png?raw=true"
-                        style="max-width: 60%; height: auto;"> </div>
+                <div id="projectid"> <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/fig_2.png?raw=true"
+                        style="max-width: 90%; height: auto;"> </div>
                 <figcaption style="font-size: 90%; margin-top: 12px; text-align: left; font-weight: 400"> Illuatration
-                    of Ego-IRG task. This task allows for unified analyzing, answering, and pixel grounding regarding interactions within egocentric images based on various user queries. </figcaption>
+                    of the proposed CaRe-Ego. The method comprises four main components: an encoder, a
+multi-branch decoder, a hand-guided object feature enhancer (HOFE), and a contact-centric object decoupling strategy (CODS). Rep. in this figure denotes representations. </figcaption>
             </figure>
         </center>
         <hr>
         <h3>
-            Ego-IRGBench dataset
+            Qualitative Results
         </h3>
         <center>
             <figure>
-                <div id="projectid"> <img src="https://github.com/yuggiehk/annexe/blob/main/imgs/fig3.png?raw=true"
+                <div id="projectid"> <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/1.png?raw=true"
+                        style="max-width: 90%; height: auto;"> </div>
+                <figcaption style="font-size: 90%; margin-top: 12px; text-align: left; font-weight: 400"> Comparison results on the <b>EgoHOS in-domain test set</b>.</figcaption>
+            </figure>
+        </center>
+        <center>
+            <figure>
+                <div id="projectid"> <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/2.png?raw=true"
+                        style="max-width: 70%; height: auto;"> </div>
+                <figcaption style="font-size: 90%; margin-top: 12px; text-align: left; font-weight: 400"> Comparison results on the <b>EgoHOS out-of-domain test set</b>.</figcaption>
+            </figure>
+        </center>
+        <center>
+            <figure>
+                <div id="projectid"> <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/3.png?raw=true"
                         style="max-width: 60%; height: auto;"> </div>
-                <figcaption style="font-size: 90%; margin-top: 12px; text-align: left; font-weight: 400"> Illuatration of Ego-IRGBench dataset. This extensive dataset is built upon a collection of 20,504 RGB-D egocentric image pairs extracted from the <a
-                        href="https://hoi4d.github.io" rel="external nofollow noopener"
-                        target="_blank">HOI4D dataset</a>, including various interactions and environments from a first-person view. Specifically, each egocentric RGB image is paired with a depth map ((a.ii)) and an interaction description (a), providing spatial information about the scene and outlining the specific interaction taking place. Furthermore, multiple queries are labeled for each image, allowing for various inquiries related to the interactions depicted.
-Each query is paired with an answer and corresponding pixel-level grounding mask, forming systematic and ultimate feedback to the query. It is worth emphasizing that the query is not limited to inferring a single target (b) involving interactions. Multi-target (c) and no-target (d) queries are also provided in the Ego-IRGBench dataset, which shows the diversity of the dataset.</figcaption>
+                <figcaption style="font-size: 90%; margin-top: 12px; text-align: left; font-weight: 400"> Comparison results on the <b>out-of-distribution mini-HOI4D dataset</b>.</figcaption>
             </figure>
         </center>
-        <hr>
-        <h3> ANNEXE Model </h3>
-        <center>
-            <figure>
-                <div id="projectid"> <img src="https://github.com/yuggiehk/annexe/blob/main/imgs/fig2.png?raw=true" style="max-width: 60%; height: auto;"> </div>
-                <figcaption style="font-size: 90%; margin-top: 12px; text-align: left; font-weight: 400"> Overview of
-                    the proposed ANNEXE framework. By incorporating the mask generation module, the proposed ANNEXE model can predict precise and query-orientated pixel-level masks regarding egocentric interactions, which can be applied to various downstream tasks with different requirements more efficiently. </figcaption>
-            </figure>
-        </center>
-        <hr>
-        <h3> Qualitative Results </h3>
-        <center>
-            <figure>
-                <div id="projectid"> <img src="https://github.com/yuggiehk/annexe/blob/main/imgs/Supp-fig5.png?raw=true" style="max-width: 60%; height: auto;"> </div>
-                <figcaption style="font-size: 90%; margin-top: 12px; text-align: left; font-weight: 400"> Qualitative results of our ANNEXE model (b) and Ground Truth (c). </figcaption>
-            </figure>
-        </center>
-        <hr>
+        
         <h3> Citation </h3>
         <div class="language-plaintext highlighter-rouge">
             <div class="highlight">
-                <pre class="highlight"><code>@inproceedings{su:annexe:2025,
-    title = {ANNEXE: Unified Analyzing, Answering, and Pixel Grounding for Egocentric Interaction},
-    author = {Yuejiao Su, Yi Wang, Qiongyang Hu, Chuang Yang, and Lap-Pui Chau},
-    booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-    year={2025}
+                <pre class="highlight"><code>@misc{su2025careegocontactawarerelationshipmodeling,
+      title={CaRe-Ego: Contact-aware Relationship Modeling for Egocentric Interactive Hand-object Segmentation}, 
+      author={Yuejiao Su and Yi Wang and Lap-Pui Chau},
+      year={2025},
+      eprint={2407.05576},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2407.05576}, 
   }
   </code></pre>
             </div>
         </div>
          <div class="highlight">
         <h3>Data</h3>
-        <p>News: The Ego-IRGBench dataset will be released soon.</p>
-        <p>Ego-IRGBench_Egocentric_Image.<a href="" target="_blank" style="color: #0069d1;"><span class="icon"> <i class="fas fa-download"></i> </span>Egocentric_Image</a>. </p>
-        <p>Ego-IRGBench_depth.<a href="" target="_blank" style="color: #0069d1;"><span class="icon"> <i class="fas fa-download"></i> </span>Depth_Map</a>. </p>
-        <p>Ego-IRGBench_Query_Answer.<a href="" target="_blank" style="color: #0069d1;"><span class="icon"> <i class="fas fa-download"></i> </span>Query_Answer</a>. </p>
-        <p>Ego-IRGBench_Mask.<a href="" target="_blank" style="color: #0069d1;"><span class="icon"> <i class="fas fa-download"></i> </span>Mask</a>. </p>     
+        <p>News: The mini-HOI4D dataset and the checkpoint of best model will be released soon.</p>
+        <p>mini-HOI4D.<a href="" target="_blank" style="color: #0069d1;"><span class="icon"> <i class="fas fa-download"></i> </span>mini-HOI4D</a>. </p>
+        <p>Model.<a href="" target="_blank" style="color: #0069d1;"><span class="icon"> <i class="fas fa-download"></i> </span>Model</a>. </p>
         <p>Baidu Cloud download link.<a href="" target="_blank" style="color: #0069d1;"><span class="icon"> <i class="fas fa-download"></i> </span>Baidu Cloud download link.</a>. </p>
     </div>
     </div>
