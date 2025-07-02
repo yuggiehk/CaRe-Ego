@@ -42,15 +42,12 @@ Comparison results on the EgoHOS **in-domain test set**.
     <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/1.png" alt="My Image" height="400"/>
 </div>
 
-Comparison results on the EgoHOS **out-of-domain test set**.
+Comparison results on the EgoHOS **out-of-domain test set** and **out-of-distribution mini-HOI4D dataset**. The mini-HOI4D dataset is derived from the [HOI4D dataset](https://hoi4d.github.io/). You can download mini-HOI4D [here]().
 <div align="center">
-    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/2.png" alt="My Image" height="400"/>
+    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/51.png?raw=true" alt="My Image" height="400"/>
 </div>
 
-Comparison results on the **out-of-distribution** mini-HOI4D dataset. The dataset of mini-HOI4D will be released soon.
-<div align="center">
-    <img src="https://github.com/yuggiehk/CaRe-Ego/blob/main/imgs/3.png" alt="My Image" height="400"/>
-</div>
+
 
 ## Acknowledgements
 The research work was conducted in the JC STEM Lab of Machine Learning and Computer Vision funded by The Hong Kong Jockey Club Charities Trust.
