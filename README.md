@@ -1,11 +1,11 @@
 # CaRe-Ego
 [CaRe-Ego: Contact-aware Relationship Modeling for Egocentric Interactive Hand-object Segmentation](https://arxiv.org/abs/2407.05576)
-
+Yuejiao Su, Yi Wang, and Lap-Pui Chau
 [![Logo](https://raw.githubusercontent.com/yuggiehk/CaRe-Ego/17be80be91e4c5cce0a2c2a05fca1510d5722276/assets/arxiv.svg)](https://arxiv.org/abs/2407.05576)
 [![Logo](https://raw.githubusercontent.com/yuggiehk/CaRe-Ego/58a2692e8eaf8931b3556d0c56dd86454066c83e/assets/projectpage.svg)](https://yuggiehk.github.io/CaRe-Ego/)
 
 
-Yuejiao Su, Yi Wang, and Lap-Pui Chau
+
 
 ## Abstract
 Egocentric Interactive hand-object segmentation (EgoIHOS) requires segmenting hands and interacting objects in egocentric images, which is crucial for understanding human behaviors in assistive systems. Current methods often overlook the essential interactive relationships between hands and objects, or merely establish coarse hand-object associations to recognize targets, leading to suboptimal accuracy. To address this issue, we propose a novel CaRe-Ego method that achieves state-of-the-art performance by emphasizing contact between hands and objects from two aspects. First, to explicitly model hand-object interactive relationships, we introduce a Hand-guided Object Feature Enhancer (HOFE), which utilizes hand features as prior knowledge to extract more contact-relevant and distinguishing object features. Second, to promote the network concentrating on hand-object interactions, we design a Contact-Centric Object Decoupling Strategy (CODS) to reduce interference during training by disentangling the overlapping attributes of the segmentation targets, allowing the model to capture specific contact- aware features associated with each hand. Experiments on various in-domain and out-of-domain test sets show that Care-Ego significantly outperforms existing methods while exhibiting robust generalization capability.
