@@ -11,7 +11,7 @@ from mmengine.logging import MMLogger, print_log
 from mmengine.utils import mkdir_or_exist
 from PIL import Image
 from prettytable import PrettyTable
-
+import os
 from mmseg.registry import METRICS
 
 
@@ -48,8 +48,8 @@ class NewSeperateIou(BaseMetric):
                  nan_to_num: Optional[int] = None,
                  beta: int = 1,
                  collect_device: str = 'cpu',
-                 output_dir: Optional[str] = '/home/suyuejiao/demostrations_egohos/bucket/output/',
-                 output_vis_dir:Optional[str]='/home/suyuejiao/demostrations_egohos/bucket/vis/',
+                 output_dir: Optional[str] = '',
+                 output_vis_dir:Optional[str]='',
                  format_only: bool = False,
                  prefix: Optional[str] = None,
                  **kwargs) -> None:
@@ -93,28 +93,9 @@ class NewSeperateIou(BaseMetric):
                     img_path))[0]
             img = img.clone().detach()
             img = img.to(torch.device('cpu'))
-            # print("@@####",img.shape)
-            # CHW-->HWC
-            # if use PIL.Image to save the image, then the image will be blue
-            # we should use cv2 to save the image
-            import cv2
-            img = np.array(img.permute(1,2,0))
-            print("!!!!!!",img.shape)
-            png_filename = osp.abspath(
-                    osp.join(self.output_dir, f'{filename}.jpg'))
-            cv2.imwrite( png_filename, img)
 
 
         for data_sample in data_samples:
-            # print('==', data_sample['pred_sem_seg_hand']['data'].shape)
-            # print('===', data_sample['gt_sem_seg_hand']['data'].shape)
-            # print('==', data_sample['pred_sem_seg_left_obj']['data'].shape)
-            # print('===', data_sample['gt_sem_seg_left_obj']['data'].shape)
-            # print('==', data_sample['pred_sem_seg_right_obj']['data'].shape)
-            # print('===', data_sample['gt_sem_seg_right_obj']['data'].shape)
-            # print('==', data_sample['pred_sem_seg_two_obj']['data'].shape)
-            # print('===', data_sample['gt_sem_seg_two_obj']['data'].shape)
-
             pred_label_hand = data_sample['pred_sem_seg_hand']['data'].squeeze()
             pred_label_left_obj = data_sample['pred_sem_seg_left_obj']['data'].squeeze()
             pred_label_right_obj = data_sample['pred_sem_seg_right_obj']['data'].squeeze()
@@ -133,41 +114,22 @@ class NewSeperateIou(BaseMetric):
                 result_left_obj = self.intersect_and_union(pred_label_left_obj, label_left_obj, num_classes_left_obj, self.ignore_index)
                 result_right_obj = self.intersect_and_union(pred_label_right_obj, label_right_obj, num_classes_right_obj, self.ignore_index)
                 result_two_obj = self.intersect_and_union(pred_label_two_obj, label_two_obj, num_classes_two_obj, self.ignore_index)
-                # print("--",result_hand)
-                # print("**",result_left_obj)
-                # print("##",result_right_obj)
-                # print(result_two_obj)
+              
                 # this is to merge the hand output and obj output, we should delete 0,3,5,7 
                 result_batch_intersection = torch.cat((result_hand[0], result_left_obj[0],result_right_obj[0], result_two_obj[0]),dim=0)
-                # print("Xx",result_batch_intersection)
                 result_batch_intersection = np.delete(np.array(result_batch_intersection), [0,3,5,7])
-                # print("Xx2",result_batch_intersection)
                 result_batch_intersection = torch.from_numpy(result_batch_intersection)
-                # print("Xx1",result_batch_intersection)
     
-                # print(result_batch_intersection)
                 result_batch_union = torch.cat((result_hand[1], result_left_obj[1],result_right_obj[1], result_two_obj[1]),dim=0)
-                # print("yy1", result_batch_union)
                 result_batch_union = np.delete(np.array(result_batch_union), [0,3,5,7])
-                # print("yy2", result_batch_union)
                 result_batch_union = torch.from_numpy(result_batch_union)
-                # print("yy3", result_batch_union)
         
-                # print(result_batch_union)
                 result_batch_pred = torch.cat((result_hand[2], result_left_obj[2],result_right_obj[2], result_two_obj[2]),dim=0)
-                # print("zz1",result_batch_pred)
                 result_batch_pred = np.delete(np.array(result_batch_pred), [0,3,5,7])
-                # print("zz2",result_batch_pred)
                 result_batch_pred = torch.from_numpy(result_batch_pred)
-                # print("zz3",result_batch_pred)
-                # print(result_batch_pred)
                 result_batch_label = torch.cat((result_hand[3], result_left_obj[3],result_right_obj[3], result_two_obj[3]),dim=0)
-                # print('mm1',result_batch_label)
                 result_batch_label = np.delete(np.array(result_batch_label), [0,3,5,7])
-                # print('mm2',result_batch_label)
                 result_batch_label = torch.from_numpy(result_batch_label)
-                # print('mm3',result_batch_label)
-                # print(result_batch_label)
 
                 result_batch = result_batch_intersection, result_batch_union, result_batch_pred, result_batch_label
                 self.results.append(result_batch)      
@@ -219,7 +181,7 @@ class NewSeperateIou(BaseMetric):
                 img_pngname = osp.abspath(
                     osp.join(self.output_dir, f'{basename}.jpg')
                 )
-                import os
+                
                 #if os.path.exists(img_pngname):
                 #if True:
                 #    print("==========================================================")
