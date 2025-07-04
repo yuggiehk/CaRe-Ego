@@ -79,10 +79,6 @@ class SeperateTwoObjDataPreProcessor(BaseDataPreprocessor):
         if self._enable_normalize:
             inputs = [(_input - self.mean) / self.std for _input in inputs]
 
-        # print("----------######", ((data_samples[0].gt_sem_seg_hand.data)).shape) # tensor[1,360,379]
-        # print("----------######", ((data_samples[0].gt_sem_seg.data)).shape) # tensor[1,360,379]
-        # print("----------######", (inputs[0].shape)) # tensor[3,360,379]
-
         if training:
             assert data_samples is not None, ('During training, ',
                                               '`data_samples` must be define.')
@@ -113,12 +109,6 @@ class SeperateTwoObjDataPreProcessor(BaseDataPreprocessor):
                     data_sample.set_metainfo({**pad_info})
             else:
                 inputs = torch.stack(inputs, dim=0)
-        
-        # print("==========",inputs.shape)
-        # print("==============", dict(inputs=inputs, data_samples=data_samples))
-        # print("----22------######", ((data_samples[0].gt_sem_seg_hand.data)).shape) # tensor[1,360,379]
-        # print("----22------######", ((data_samples[0].gt_sem_seg.data)).shape) # tensor[1,360,379]
-        # print("----22------######", (inputs[0].shape)) # tensor[3,360,379]
 
         return dict(inputs=inputs, data_samples=data_samples)
 
@@ -147,7 +137,7 @@ def stack_batch(inputs: List[torch.Tensor],
     padded_inputs = []
     padded_samples = []
     inputs_sizes = [(img.shape[-2], img.shape[-1]) for img in inputs]
-    # print("----------------",inputs_sizes)
+
     max_size = np.stack(inputs_sizes).max(0)
     if size_divisor is not None and size_divisor > 1:
         # the last two dims are H,W, both subject to divisibility requirement
@@ -157,19 +147,16 @@ def stack_batch(inputs: List[torch.Tensor],
     for i in range(len(inputs)):
         tensor = inputs[i]
         if size is not None:
-            # print("##", size)
-            # print("###", tensor.shape)
+
             width = max(size[-1] - tensor.shape[-1], 0)
             height = max(size[-2] - tensor.shape[-2], 0)
-
             # (padding_left, padding_right, padding_top, padding_bottom)
             padding_size = (0, width, 0, height)
-            # print("**", padding_size)
+
         elif size_divisor is not None:
             width = max(max_size[-1] - tensor.shape[-1], 0)
             height = max(max_size[-2] - tensor.shape[-2], 0)
             padding_size = (0, width, 0, height)
-            # print("***", padding_size)
         else:
             padding_size = [0, 0, 0, 0]
 
