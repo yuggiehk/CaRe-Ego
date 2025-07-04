@@ -129,25 +129,10 @@ class UnetdecoderSeperateHeadsOutputFeature(BaseDecodeHead):
             print(name, param.data)
 
     def _init_weights_load_from_others(self, state_dict, strict=False):
-        with open('/home/suyuejiao/mmsegmentation/test.txt','a') as file:
-            print("*************decoder load init weights from others",file=file)
-            print("=====",self.type_Decoder,file=file)
-            for name, param in self.named_parameters():
-                print("----1111111----",name, param.data,file=file)
-            self.print_model_param_values()
-            
         self.load_state_dict(state_dict, strict=strict)
-        with open('/home/suyuejiao/mmsegmentation/test2.txt','a') as file:
-            print("=====",self.type_Decoder,file=file)
-            for name, param in self.named_parameters():
-                
-                print("----22222----",name, param.data,file=file)
-            for i,m in enumerate(self.named_parameters()):
-                print("-----33333-----", i,m,file=file)
+        
 
     def _init_weights(self, m):
-            with open('/home/suyuejiao/mmsegmentation/test.txt','a') as file:
-                print("******decoder init weights, trunc_normal_",file=file)
         # if not self.pretrained:
             if isinstance(m, nn.Linear):
                 trunc_normal_(m.weight, std=.02)
@@ -192,13 +177,8 @@ class UnetdecoderSeperateHeadsOutputFeature(BaseDecodeHead):
 
     def forward(self,x):
         
-        # torch.Size([16, 128, 112, 112])
-        # torch.Size([16, 256, 56, 56])
-        # torch.Size([16, 512, 28, 28])
-        # torch.Size([16, 1024, 14, 14])
         
         for i in range(len(x)):
-            # print("===",x[i].shape)
             if len(x[i].shape)==3:
                 B, HW, C = x[i].shape
             elif len(x[i].shape)==4:
@@ -211,9 +191,8 @@ class UnetdecoderSeperateHeadsOutputFeature(BaseDecodeHead):
         x = self.forward_up_features(x,x_downsample)
         output_feature = x
 
-        # print('----',x.shape)
         x = self.up_x4(x)
-        # print(x.shape) # b,n,h,w
+
         return x, output_feature
     
     def loss(self, inputs: Tuple[Tensor], batch_data_samples: SampleList,
@@ -232,10 +211,8 @@ class UnetdecoderSeperateHeadsOutputFeature(BaseDecodeHead):
     def _stack_batch_gt(self, batch_data_samples: SampleList) -> Tensor:
         for data_sample in batch_data_samples:
             if self.type_Decoder=='obj':
-                # print("==", self.type_Decoder)
                 import numpy as np
                 data_np = np.unique(np.array(data_sample.gt_sem_seg.data.cpu()))
-                # print("***",data_np)
         
         gt_semantic_segs = [
             data_sample.gt_sem_seg.data for data_sample in batch_data_samples
