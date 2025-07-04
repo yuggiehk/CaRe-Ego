@@ -87,7 +87,7 @@ class NewSeperateIou(BaseMetric):
 
         for i in range(len(data_batch)):
             img = data_batch['inputs'][i] # CHW
-            # print(img)
+
             img_path = data_batch['data_samples'][i].img_path
             filename = osp.splitext(osp.basename(
                     img_path))[0]
@@ -182,20 +182,7 @@ class NewSeperateIou(BaseMetric):
                     osp.join(self.output_dir, f'{basename}.jpg')
                 )
                 
-                #if os.path.exists(img_pngname):
-                #if True:
-                #    print("==========================================================")
-                #    img = np.array(Image.open(img_pngname))
-                 #   print(output_hand.shape,output_left_obj.shape,output_right_obj.shape,output_two_obj.shape,img.shape)
-                 #3   seg_color = np.zeros((img.shape))
-                 #   seg_color[output_hand == 1] = (255,  0,   0)     # left_hand
-                 #   seg_color[output_hand == 2] = (0,    0,   255)   # right_hand
-                 #   seg_color[output_left_obj == 1] = (255,  0,   255)   # left_object1
-                 #   seg_color[output_right_obj == 1] = (0,    255, 255)   # right_object1
-                 #   seg_color[output_two_obj == 1] = (0,    255, 0)     # two_object1
-                 #33   vis = img * (1 - 0.6) + seg_color * 0.4
-                 #   from skimage.io import imsave
-                 #   imsave("/home/suyuejiao/demostrations_egohos/output_1_448/vis_all/"+filename+'.jpg', vis.astype(np.uint8))
+
 
     def compute_metrics(self, results: list) -> Dict[str, float]:
         """Compute the metrics from processed results.
@@ -222,7 +209,7 @@ class NewSeperateIou(BaseMetric):
         total_area_union = sum(results[1])
         total_area_pred_label = sum(results[2])
         total_area_label = sum(results[3])
-        # print("xxx",total_area_intersect,total_area_union,total_area_pred_label,total_area_label)
+       
         ret_metrics = self.total_area_to_metrics(
             total_area_intersect, total_area_union, total_area_pred_label,
             total_area_label, self.metrics, self.nan_to_num, self.beta)
@@ -251,10 +238,7 @@ class NewSeperateIou(BaseMetric):
         ret_metrics_class.move_to_end('Class', last=False)
         class_table_data = PrettyTable()
 
-        # for key, val in ret_metrics_class.items():
-        #     print(key,val)
-
-
+    
         for key, val in ret_metrics_class.items():
             class_table_data.add_column(key, val)
 
