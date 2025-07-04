@@ -350,11 +350,9 @@ class WithSeperateHeadsforObjCrossAttnSegmentor(BaseSegmentor):
             ) -> Tuple[torch.Tensor, Dict[str, torch.Tensor]]:
         log_vars = []
         for loss_name, loss_value in losses.items():
-            # print("==", loss_name, loss_value)
             if "decode_cb" in loss_name:
-                # print(loss_value)
                 loss_value = loss_value*0.0
-                # print("==", loss_name, loss_value)
+    
             if isinstance(loss_value, torch.Tensor):
                 log_vars.append([loss_name, loss_value.mean()])
             elif is_list_of(loss_value, torch.Tensor):
@@ -493,14 +491,6 @@ class WithSeperateHeadsforObjCrossAttnSegmentor(BaseSegmentor):
                 i_seg_pred_cb = (i_seg_logits_cb >
                                  self.decode_head3.threshold).to(i_seg_logits_cb)
         
-            # print("=", i_seg_pred_hand.shape)
-            # print("==", i_seg_pred_right_obj.shape)
-            # print("==", i_seg_pred_left_obj.shape)
-            # import numpy as np
-            # print("=",np.unique(np.array(i_seg_pred_hand.cpu())))
-            # print("==",np.unique(np.array(i_seg_pred_right_obj.cpu())))
-            # print("==",np.unique(np.array(i_seg_pred_left_obj.cpu())))
-            # raise KeyError
 
             # ----------------add two obj prediction
             i_seg_pred_two_obj = np.zeros(i_seg_pred_left_obj.shape)
@@ -509,8 +499,7 @@ class WithSeperateHeadsforObjCrossAttnSegmentor(BaseSegmentor):
             i_seg_pred_two_obj[mask] = 1
             i_seg_pred_two_obj = i_seg_pred_two_obj.astype(np.uint8)
             i_seg_pred_two_obj = torch.from_numpy((i_seg_pred_two_obj).astype(np.uint8)).to(i_seg_logits_left_obj)
-            # print("==",np.unique(np.array(i_seg_pred_two_obj.cpu())))
-            # print(i_seg_pred_two_obj.shape)
+
 
             data_samples[i].set_data({
                 'pred_sem_seg_hand':
@@ -525,14 +514,10 @@ class WithSeperateHeadsforObjCrossAttnSegmentor(BaseSegmentor):
                 PixelData(**{'data': i_seg_pred_cb})
             })
 
-        # with open('/home/suyuejiao/mmsegmentation/test_print.txt','a') as f:
-        #     print(data_samples, file=f)
-
         return data_samples
     
     def _init_weights(self):
-            # with open('/home/suyuejiao/mmsegmentation/test.txt','a') as file:
-            #     print("***********framework init weights",file=file)
+
             ckpt = CheckpointLoader.load_checkpoint(
                 self.pretrained, logger=None, map_location='cpu')
             if 'state_dict' in ckpt:
@@ -547,30 +532,20 @@ class WithSeperateHeadsforObjCrossAttnSegmentor(BaseSegmentor):
             state_dict_3 = OrderedDict()
             state_dict = OrderedDict()
             for k, v in _state_dict.items():
-                # with open('/home/suyuejiao/mmsegmentation/test.txt','a') as file0:
-                #     print("-------a------",k,file=file0)
+
                 if k.startswith("decode_head1"):
                     state_dict_1[k[13:]] = v
-                    # with open('/home/suyuejiao/mmsegmentation/test.txt','a') as file0:
-                    #     print("===startwith=111==", k[13:],file=file0)
+                   
                 elif k.startswith("decode_head2"):
                     state_dict_2[k[13:]] = v
-                    # with open('/home/suyuejiao/mmsegmentation/test.txt','a') as file0:
-                    #     print("===startwith=222==", k[13:],file=file0)
+                   
                 elif k.startswith("decode_head3"):
                     state_dict_3[k[13:]] = v
-                    # with open('/home/suyuejiao/mmsegmentation/test.txt','a') as file0:
-                    #     print("===startwith=333==", k[13:],file=file0)
+                    
                 else: #backbone
                     state_dict[k[9:]] = v
-                    # with open('/home/suyuejiao/mmsegmentation/test.txt','a') as file0:
-                    #     print("=no==startwith===", k[9:],file=file0)
-            # with open('/home/suyuejiao/mmsegmentation/test.txt','a') as file:
-            #     print("---11---", state_dict_1.keys(), file=file)
-            #     print("---22---", state_dict_2.keys(), file=file)
-            #     print("---33---", state_dict_3.keys(), file=file)
-            #     print("---00---", state_dict.keys(), file=file)
-
+                    
+          
             # strip prefix of state_dict
             if list(state_dict.keys())[0].startswith('module.'):
                 state_dict = {k[7:]: v for k, v in state_dict.items()}
