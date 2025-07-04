@@ -2,7 +2,7 @@ norm_cfg = dict(type='SyncBN', requires_grad=True)
 backbone_norm_cfg = dict(type='LN', requires_grad=True)
 find_unused_parameters=True
 dataset_type = 'SeperateObjectEgohos'
-data_root='/mnt/nvme1/suyuejiao/egohos_split_data/'
+data_root='/mnt/nvme1/suyuejiao/egohos_split_data/' # dataset folder
 class_hand=3
 class_left_obj=2
 class_right_obj=2
@@ -20,9 +20,9 @@ data_preprocessor = dict(
     size=crop_size)
     
 model = dict(
-    type='WithSeperateHeadsforObjCrossAttnSegmentor',
+    type='CaregoSegmentor',
     data_preprocessor=data_preprocessor,
-    pretrained='/home/suyuejiao/new_mmseg/mmsegmentation/swin_base_patch4_window12_384_22k_20220317-e5c09f74.pth',
+    pretrained='/home/suyuejiao/new_mmseg/mmsegmentation/swin_base_patch4_window12_384_22k_20220317-e5c09f74.pth', # pretrained model path
     feature_cb_and_hand_to_obj=False,
     backbone=dict(
         type='SwinTransformer',
@@ -45,7 +45,7 @@ model = dict(
         act_cfg=dict(type='GELU'),
         norm_cfg=backbone_norm_cfg),
     decode_head1=dict(
-        type='UnetdecoderSeperateHeadsOutputFeature',
+        type='CaregoDecoder',
         type_decode='hand',
         img_size=crop_size,
         patch_size=4, 
@@ -65,7 +65,7 @@ model = dict(
                      loss_weight=0.5)],
         ),
     decode_head2=dict(
-        type='UnetdecoderSeperateHeadsInputFeatureCrossAttn',
+        type='CaregoDecoder2',
         type_decode='left_obj',
         img_size=crop_size,
         patch_size=4, 
@@ -85,7 +85,7 @@ model = dict(
                      loss_weight=0.5)],
         ),
     decode_head3=dict(
-        type='UnetdecoderSeperateHeads',
+        type='CaregoDecoder3',
         type_decode='cb',
         img_size=crop_size,
         patch_size=4, 
@@ -106,7 +106,7 @@ model = dict(
     train_cfg=dict(),
     test_cfg=dict(mode='whole'),
     decode_head4=dict(
-        type='UnetdecoderSeperateHeadsInputFeatureCrossAttn',
+        type='CaregoDecoder2',
         type_decode='right_obj',
         img_size=crop_size,
         patch_size=4, 
@@ -134,7 +134,7 @@ train_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         data_prefix=dict(
-            img_path='train/image', seg_map_path='train/label', seg_map_path_hand='train/label_hand',seg_map_path_left_obj='train/lbl_obj_left', seg_map_path_right_obj='train/lbl_obj_right',seg_map_path_two_obj='train/lbl_obj_two', seg_map_path_cb='train/label_contact_first'),
+            img_path='train/image', seg_map_path='train/label', seg_map_path_hand='train/lbl_hand',seg_map_path_left_obj='train/lbl_obj_left', seg_map_path_right_obj='train/lbl_obj_right',seg_map_path_two_obj='train/lbl_obj_two', seg_map_path_cb='train/label_contact'),
         pipeline=[
             dict(type='LoadMultiLabelImageFromFile'),
             dict(type='LoadSeperateTwoObjAnnotation'),
@@ -158,7 +158,7 @@ val_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         data_prefix=dict(
-            img_path='test_indomain/image', seg_map_path='test_indomain/label', seg_map_path_hand='test_indomain/label_hand',seg_map_path_left_obj='test_indomain/lbl_obj_left', seg_map_path_right_obj='test_indomain/lbl_obj_right',seg_map_path_two_obj='test_indomain/lbl_obj_two', seg_map_path_cb='test_indomain/label_contact_first'),
+            img_path='minihoi4d/image', seg_map_path='minihoi4d/label', seg_map_path_hand='minihoi4d/label_hand',seg_map_path_left_obj='minihoi4d/lbl_obj_left', seg_map_path_right_obj='minihoi4d/lbl_obj_right',seg_map_path_two_obj='minihoi4d/lbl_obj_two', seg_map_path_cb='minihoi4d/label_contact_first'),
         pipeline=[
             dict(type='LoadMultiLabelImageFromFile'),
             dict(type='LoadSeperateTwoObjAnnotation'),
