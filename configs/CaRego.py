@@ -2,7 +2,7 @@ norm_cfg = dict(type='SyncBN', requires_grad=True)
 backbone_norm_cfg = dict(type='LN', requires_grad=True)
 find_unused_parameters=True
 dataset_type = 'SeperateObjectEgohos'
-data_root='/mnt/nvme1/suyuejiao/egohos_split_data/' # dataset folder
+data_root='' # dataset folder
 class_hand=3
 class_left_obj=2
 class_right_obj=2
@@ -22,7 +22,7 @@ data_preprocessor = dict(
 model = dict(
     type='CaregoSegmentor',
     data_preprocessor=data_preprocessor,
-    pretrained='/home/suyuejiao/new_mmseg/mmsegmentation/swin_base_patch4_window12_384_22k_20220317-e5c09f74.pth', # pretrained model path
+    pretrained='', # pretrained model path
     feature_cb_and_hand_to_obj=False,
     backbone=dict(
         type='SwinTransformer',
@@ -157,7 +157,7 @@ val_dataloader = dict(
     dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        data_prefix=dict(
+        data_prefix=dict( # change this path to various in-domain and out-of-domain test sets
             img_path='minihoi4d/image', seg_map_path='minihoi4d/label', seg_map_path_hand='minihoi4d/label_hand',seg_map_path_left_obj='minihoi4d/lbl_obj_left', seg_map_path_right_obj='minihoi4d/lbl_obj_right',seg_map_path_two_obj='minihoi4d/lbl_obj_two', seg_map_path_cb='minihoi4d/label_contact_first'),
         pipeline=[
             dict(type='LoadMultiLabelImageFromFile'),
