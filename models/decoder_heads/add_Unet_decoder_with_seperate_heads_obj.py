@@ -21,6 +21,7 @@ from ..losses import accuracy
 
 from mmengine.runner import CheckpointLoader
 from collections import OrderedDict
+import numpy as np
 
 class Mlp(nn.Module):
     def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
@@ -50,8 +51,7 @@ def window_partition(x, window_size):
         windows: (num_windows*B, window_size, window_size, C)
     """
     B, H, W, C = x.shape
-    # print("======",x.shape)
-    # print("===", H//window_size, W // window_size)
+
     x = x.view(B, H // window_size, window_size, W // window_size, window_size, C)
     windows = x.permute(0, 1, 3, 2, 4, 5).contiguous().view(-1, window_size, window_size, C)
     return windows
@@ -534,26 +534,10 @@ class UnetdecoderSeperateHeads(BaseDecodeHead):
         for name, param in self.named_parameters():
             print(name, param.data)
 
-    def _init_weights_load_from_others(self, state_dict, strict=False):
-        with open('/home/suyuejiao/mmsegmentation/test.txt','a') as file:
-            print("*************decoder load init weights from others",file=file)
-            print("=====",self.type_Decoder,file=file)
-            for name, param in self.named_parameters():
-                print("----1111111----",name, param.data,file=file)
-            self.print_model_param_values()
-            
+    def _init_weights_load_from_others(self, state_dict, strict=False):         
         self.load_state_dict(state_dict, strict=strict)
-        with open('/home/suyuejiao/mmsegmentation/test2.txt','a') as file:
-            print("=====",self.type_Decoder,file=file)
-            for name, param in self.named_parameters():
-                
-                print("----22222----",name, param.data,file=file)
-            for i,m in enumerate(self.named_parameters()):
-                print("-----33333-----", i,m,file=file)
 
     def _init_weights(self, m):
-            with open('/home/suyuejiao/mmsegmentation/test.txt','a') as file:
-                print("******decoder init weights, trunc_normal_",file=file)
         # if not self.pretrained:
             if isinstance(m, nn.Linear):
                 trunc_normal_(m.weight, std=.02)
@@ -604,7 +588,7 @@ class UnetdecoderSeperateHeads(BaseDecodeHead):
         # torch.Size([16, 1024, 14, 14])
         
         for i in range(len(x)):
-            # print("===",x[i].shape)
+          
             if len(x[i].shape)==3:
                 B, HW, C = x[i].shape
             elif len(x[i].shape)==4:
@@ -615,9 +599,9 @@ class UnetdecoderSeperateHeads(BaseDecodeHead):
         x_downsample = x
         x = x_downsample[3]
         x = self.forward_up_features(x,x_downsample)
-        # print('----',x.shape)
+
         x = self.up_x4(x)
-        # print(x.shape) # b,n,h,w
+
         return x
     
     def loss(self, inputs: Tuple[Tensor], batch_data_samples: SampleList,
@@ -636,10 +620,8 @@ class UnetdecoderSeperateHeads(BaseDecodeHead):
     def _stack_batch_gt(self, batch_data_samples: SampleList) -> Tensor:
         for data_sample in batch_data_samples:
             if self.type_Decoder=='obj':
-                # print("==", self.type_Decoder)
-                import numpy as np
                 data_np = np.unique(np.array(data_sample.gt_sem_seg.data.cpu()))
-                # print("***",data_np)
+
         
         gt_semantic_segs = [
             data_sample.gt_sem_seg.data for data_sample in batch_data_samples
