@@ -81,7 +81,6 @@ class LayerNorm(nn.Module):
             self.body = WithBias_LayerNorm(dim)
 
     def forward(self, x):
-        print("@@@",x.shape)
         if len(x.shape) == 3:
             b,hw,c = x.shape
             return self.body(x)
@@ -118,38 +117,28 @@ class Atten(torch.nn.Module):
                 cur = cur.view(b,c,h,w)
             # cur-query, pre-key,value
             b,hw,c = pre.shape
-            # print(pre.shape, cur.shape) #torch.Size([2, 196, 1024]) torch.Size([2, 1024, 36])
+            
             h=w=int(math.sqrt(hw))
             pre = pre.view(b,h,w,c).permute(0,3,1,2)
             
             b, c, h, w = pre.shape
-            # print(pre.shape) #2, 1024, 14, 14]
-            # print(cur.shape) #[2, 1024, 6, 6]
 
             pre_ln = self.norm1(pre)
             cur_ln = self.norm2(cur)
-            # print(pre.shape) #2, 1024, 14, 14]
-            # print(cur.shape) #[2, 1024, 6, 6]
 
             q = self.conv_q(cur_ln)
-            # print(q.shape) #[2, 1024, 6, 6]
             q = q.view(b, c, -1)
-            # print(q.shape) #[2, 1024, 36]
             k,v = self.conv_kv(pre_ln).chunk(2, dim=1)
             k = k.view(b, c, -1)
             v = v.view(b, c, -1)
-            print(k.shape, v.shape) #torch.Size([2, 1024, 196]) torch.Size([2, 1024, 196])
             q = torch.nn.functional.normalize(q, dim=-1)
             k = torch.nn.functional.normalize(k, dim=-1)
-            print(q.shape, k.shape) #torch.Size([2, 1024, 36]) torch.Size([2, 1024, 196])
             att = torch.matmul(q, k.permute(0, 2, 1))
             att = self.softmax(att)
             out = torch.matmul(att, v).view(b, c, h, w)
             out = self.conv_out(out) + cur
-            print(out.shape)
             b,c,h,w = out.shape
             out = out.view(b,c,-1).permute(0,2,1)
-            print(out.shape)
         
             return out
 
@@ -262,25 +251,11 @@ class UnetdecoderSeperateHeadsInputFeatureCrossAttn(BaseDecodeHead):
             print(name, param.data)
 
     def _init_weights_load_from_others(self, state_dict, strict=False):
-        with open('/home/suyuejiao/mmsegmentation/test.txt','a') as file:
-            print("*************decoder load init weights from others",file=file)
-            print("=====",self.type_Decoder,file=file)
-            for name, param in self.named_parameters():
-                print("----1111111----",name, param.data,file=file)
-            self.print_model_param_values()
-            
+
         self.load_state_dict(state_dict, strict=strict)
-        with open('/home/suyuejiao/mmsegmentation/test2.txt','a') as file:
-            print("=====",self.type_Decoder,file=file)
-            for name, param in self.named_parameters():
-                
-                print("----22222----",name, param.data,file=file)
-            for i,m in enumerate(self.named_parameters()):
-                print("-----33333-----", i,m,file=file)
+       
 
     def _init_weights(self, m):
-            with open('/home/suyuejiao/mmsegmentation/test.txt','a') as file:
-                print("******decoder init weights, trunc_normal_",file=file)
         # if not self.pretrained:
             if isinstance(m, nn.Linear):
                 trunc_normal_(m.weight, std=.02)
@@ -318,7 +293,6 @@ class UnetdecoderSeperateHeadsInputFeatureCrossAttn(BaseDecodeHead):
 
         if self.final_upsample=="expand_first":
             x = self.up(x)
-            # print("*******", x.shape)
             x = x.view(B,4*H,4*W,-1)
             x = x.permute(0,3,1,2) #B,C,H,W
             x = self.output(x)
@@ -332,7 +306,6 @@ class UnetdecoderSeperateHeadsInputFeatureCrossAttn(BaseDecodeHead):
         # torch.Size([16, 1024, 14, 14])
         
         for i in range(len(x)):
-            # print("===",x[i].shape)
             if len(x[i].shape)==3:
                 B, HW, C = x[i].shape
             elif len(x[i].shape)==4:
@@ -343,7 +316,6 @@ class UnetdecoderSeperateHeadsInputFeatureCrossAttn(BaseDecodeHead):
         x_downsample = x
         x = x_downsample[3]
         x = self.forward_up_features(x,x_downsample)
-        # print('----',x.shape)# torch.Size([6, 12544, 128])
 
         # ----cross attn layer------
         x_cross = self.cross_attn(x, feature_hand)
@@ -352,7 +324,6 @@ class UnetdecoderSeperateHeadsInputFeatureCrossAttn(BaseDecodeHead):
 
 
         x = self.up_x4(x)
-        # print(x.shape) # b,n,h,w
         return x
     
     def loss(self, inputs: Tuple[Tensor],feature_hand, batch_data_samples: SampleList,
@@ -371,10 +342,8 @@ class UnetdecoderSeperateHeadsInputFeatureCrossAttn(BaseDecodeHead):
     def _stack_batch_gt(self, batch_data_samples: SampleList) -> Tensor:
         for data_sample in batch_data_samples:
             if self.type_Decoder=='obj':
-                # print("==", self.type_Decoder)
                 import numpy as np
                 data_np = np.unique(np.array(data_sample.gt_sem_seg.data.cpu()))
-                # print("***",data_np)
         
         gt_semantic_segs = [
             data_sample.gt_sem_seg.data for data_sample in batch_data_samples
