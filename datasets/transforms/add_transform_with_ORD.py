@@ -127,12 +127,7 @@ class LoadSeperateTwoObjAnnotation(MMCV_LoadAnnotations):
         results['seg_fields'].append('gt_seg_map_two_obj')
         results['seg_fields'].append('gt_seg_map_cb')
 
-        # with open('/home/suyuejiao/mmsegmentation/test_print.txt','a') as f:
-        #     print("*****",results['gt_seg_map'],file=f)
-        #     print("*****",results['gt_seg_map_hand'],file=f)
-        #     print("------",results['gt_seg_map_left_obj'],file=f)
-        #     print("------",results['gt_seg_map_right_obj'],file=f)
-        # raise KeyError
+     
 
     def __repr__(self) -> str:
         repr_str = self.__class__.__name__
@@ -396,15 +391,7 @@ class ThreeLabelResizeSeperateTwoobj(BaseTransform):
         self._resize_img(results)      
         self._resize_seg(results)
 
-        # with open('/home/suyuejiao/mmsegmentation/test_print.txt','a') as f:
-        #     print("*****",results,file=f)
-        #     print(results['img'].shape, file=f)
-        #     print(results['gt_seg_map_left_obj'].shape, file=f)
-        #     print(results['gt_seg_map_right_obj'].shape, file=f)
-        #     print(results['gt_seg_map_hand'].shape, file=f)
-        #     print(results['gt_seg_map_two_obj'].shape, file=f)
-        #     print(results['gt_seg_map_cb'].shape, file=f)
-        # raise KeyError
+    
        
         return results
 
@@ -490,15 +477,7 @@ class RandomSeperateObjectCrop(BaseTransform):
         results['img'] = img
         results['img_shape'] = img.shape[:2]
 
-        # with open('/home/suyuejiao/mmsegmentation/test_print.txt','a') as f:
-        #     print("*****",results,file=f)
-        #     print(results['img'].shape, file=f)
-        #     print(results['gt_seg_map_left_obj'].shape, file=f)
-        #     print(results['gt_seg_map_right_obj'].shape, file=f)
-        #     print(results['gt_seg_map_hand'].shape, file=f)
-        #     print(results['gt_seg_map_two_obj'].shape, file=f)
-        #     print(results['gt_seg_map_cb'].shape, file=f)
-        # raise KeyError
+       
         return results
 
     def __repr__(self):
@@ -587,31 +566,7 @@ class PackSeperateTwoObjLabelSegInputs(BaseTransform):
                 img_meta[key] = results[key]
         data_sample.set_metainfo(img_meta)
         packed_results['data_samples'] = data_sample
-        # with open('/home/suyuejiao/mmsegmentation/test_print.txt','a') as f:
-        #     print("--------packed_results--------", packed_results, file=f)
-        # ----------------this is blue-------------------------------------------
-        # print("--------packed_results--------", packed_results['inputs'].shape)
-        # img = np.array(packed_results['inputs'].permute(1,2,0))
-        # import cv2
-        # img_path = '/home/suyuejiao/mmsegmentation/example.jpg'
-        # from PIL import Image
-        # img = Image.fromarray(img)
-        # img.save(img_path)
-        # raise KeyError
-        # print("--------packed_results-1-------", PixelData(**gt_sem_seg_data_hand))
-        # print("--------packed_results-2-------", data_sample.gt_sem_seg_hand.data.shape)
-        # print("--------packed_results-3-------", data_sample.gt_sem_seg_left_obj.data.shape)
-        # print("--------packed_results-3-------", data_sample.gt_sem_seg_right_obj.data.shape)
-        # print("--------packed_results-4-------", data_sample.gt_sem_seg_cb.data.shape)
-        # print("--------packed_results--5------", data_sample.gt_sem_seg_two_obj.data.shape)
-
-        # print("--------packed_results-1-------", packed_results['data_samples'].gt_sem_seg.data.shape)
-        # print("--------packed_results-2-------", packed_results['data_samples'].gt_sem_seg_hand.data.shape)
-        # print("--------packed_results-3-------", packed_results['data_samples'].gt_sem_seg_left_obj.data.shape)
-        # print("--------packed_results-3-------", packed_results['data_samples'].gt_sem_seg_right_obj.data.shape)
-        # print("--------packed_results-4-------", packed_results['data_samples'].gt_sem_seg_cb.data.shape)
-        # print("--------packed_results--5------", packed_results['data_samples'].gt_sem_seg_two_obj.data.shape)
-        # raise KeyError
+        
         return packed_results
 
     def __repr__(self) -> str:
