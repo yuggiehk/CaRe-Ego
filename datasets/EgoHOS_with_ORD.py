@@ -91,14 +91,14 @@ class SeperateObjectEgohos(BaseDataset):
         new_classes_right_obj = self.metainfo.get('classes_right_obj', None)
         new_classes_two_obj = self.metainfo.get('classes_two_obj', None)
         new_classes_cb = self._metainfo.get('classes_cb', None)
-        # print(new_classes, new_classes_hand, new_classes_obj)
+
         self.label_map = self.get_label_map(new_classes)
         self.label_map_hand = self.get_label_map(new_classes_hand)
         self.label_map_left_obj = self.get_label_map(new_classes_left_obj)
         self.label_map_right_obj = self.get_label_map(new_classes_right_obj)
         self.label_map_two_obj = self.get_label_map(new_classes_two_obj)
         self.label_map_cb = self.get_label_map(new_classes_cb)
-        # print(self.label_map)
+
         self._metainfo.update(
             dict(
                 label_map=self.label_map,
@@ -195,8 +195,6 @@ class SeperateObjectEgohos(BaseDataset):
         ann_dir_two_obj = self.data_prefix.get('seg_map_path_two_obj',None)
         ann_dir_cb = self.data_prefix.get('seg_map_path_cb', None)
 
-        # print(ann_dir,ann_dir_cb,ann_dir_hand,ann_dir_left_right_obj,ann_dir_two_obj)
-        # raise KeyError
 
         if osp.isfile(self.ann_file_hand):
             lines = mmengine.list_from_file(
@@ -205,7 +203,6 @@ class SeperateObjectEgohos(BaseDataset):
                 img_name = line.strip()
                 data_info = dict(
                     img_path=osp.join(img_dir, img_name + self.img_suffix))
-                # print(data_info)
                 if ann_dir_hand is not None:
                     seg_map = img_name + self.seg_map_suffix
                     data_info['seg_map_path_hand'] = osp.join(ann_dir_hand, seg_map)
@@ -242,8 +239,6 @@ class SeperateObjectEgohos(BaseDataset):
                 data_list.append(data_info)
             data_list = sorted(data_list, key=lambda x: x['img_path'])
 
-        # print(data_list)
-        # raise KeyError
         return data_list
     
 
