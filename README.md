@@ -188,6 +188,9 @@ The research work was conducted in the JC STEM Lab of Machine Learning and Compu
 
 The code of the CaRe-Ego is built upon the [MMsegmentation](https://github.com/open-mmlab/mmsegmentation) codebase, thanks for their work.
 
+## License
+Our code is distributed under the Apache-2.0 license. See LICENSE.txt file for more information.
+
 
 
 
