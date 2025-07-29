@@ -25,7 +25,7 @@ from mmengine.runner import CheckpointLoader
 import numpy as np
 
 @MODELS.register_module()
-class WithSeperateHeadsforObjCrossAttnSegmentor(BaseSegmentor):
+class CaregoSegmentor(BaseSegmentor):
    
     def __init__(self,
                  backbone: ConfigType,
