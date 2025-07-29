@@ -25,7 +25,7 @@ from .add_Unet_decoder_with_seperate_heads_obj import PatchExpand, PatchEmbed, F
 
 
 @MODELS.register_module()
-class UnetdecoderSeperateHeadsOutputFeature(BaseDecodeHead):
+class CaregoDecoder(BaseDecodeHead):
     r""" Swin Transformer
         A PyTorch impl of : `Swin Transformer: Hierarchical Vision Transformer using Shifted Windows`  -
           https://arxiv.org/pdf/2103.14030
