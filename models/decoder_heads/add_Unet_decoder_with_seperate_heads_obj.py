@@ -431,7 +431,7 @@ class PatchEmbed(nn.Module):
         return x
 
 @MODELS.register_module()
-class UnetdecoderSeperateHeads(BaseDecodeHead):
+class CaregoDecoder3(BaseDecodeHead):
     r""" Swin Transformer
         A PyTorch impl of : `Swin Transformer: Hierarchical Vision Transformer using Shifted Windows`  -
           https://arxiv.org/pdf/2103.14030
