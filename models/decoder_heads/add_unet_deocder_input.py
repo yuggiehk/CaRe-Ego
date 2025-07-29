@@ -143,7 +143,7 @@ class Atten(torch.nn.Module):
             return out
 
 @MODELS.register_module()
-class UnetdecoderSeperateHeadsInputFeatureCrossAttn(BaseDecodeHead):
+class CaregoDecoder2(BaseDecodeHead):
     r""" Swin Transformer
         A PyTorch impl of : `Swin Transformer: Hierarchical Vision Transformer using Shifted Windows`  -
           https://arxiv.org/pdf/2103.14030
