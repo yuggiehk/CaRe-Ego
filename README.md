@@ -8,9 +8,8 @@ Yuejiao Su, Yi Wang, and Lap-Pui Chau
 
 
 
-
 ## Abstract
-Egocentric Interactive hand-object segmentation (EgoIHOS) requires segmenting hands and interacting objects in egocentric images, which is crucial for understanding human behaviors in assistive systems. Current methods often overlook the essential interactive relationships between hands and objects, or merely establish coarse hand-object associations to recognize targets, leading to suboptimal accuracy. To address this issue, we propose a novel CaRe-Ego method that achieves state-of-the-art performance by emphasizing contact between hands and objects from two aspects. First, to explicitly model hand-object interactive relationships, we introduce a Hand-guided Object Feature Enhancer (HOFE), which utilizes hand features as prior knowledge to extract more contact-relevant and distinguishing object features. Second, to promote the network concentrating on hand-object interactions, we design a Contact-Centric Object Decoupling Strategy (CODS) to reduce interference during training by disentangling the overlapping attributes of the segmentation targets, allowing the model to capture specific contact- aware features associated with each hand. Experiments on various in-domain and out-of-domain test sets show that Care-Ego significantly outperforms existing methods while exhibiting robust generalization capability.
+Egocentric Interactive hand-object segmentation (EgoIHOS) requires segmenting hands and interacting objects in egocentric images, which is crucial for understanding human behaviors in assistive systems. Current methods often overlook the essential interactive relationships between hands and objects, or merely establish coarse hand-object associations to recognize targets, leading to suboptimal accuracy. To address this issue, we propose a novel CaRe-Ego method that achieves state-of-the-art performance by emphasizing contact between hands and objects from two aspects. First, to explicitly model hand-object interactive relationships, we introduce a Hand-guided Object Feature Enhancer (HOFE), which utilizes hand features as prior knowledge to extract more contact-relevant and distinguishing object features. Second, to promote the network concentrating on hand-object interactions, we design a Contact-Centric Object Decoupling Strategy (CODS) to reduce interference during training by disentangling the overlapping attributes of the segmentation targets, allowing the model to capture specific contact-aware features associated with each hand. Experiments on various in-domain and out-of-domain test sets show that Care-Ego significantly outperforms existing methods while exhibiting robust generalization capability.
 
 ## Method
 <div align="center">
@@ -52,9 +51,10 @@ Comparison results on the EgoHOS **out-of-domain test set** (left) and **out-of-
 
 ### Dataset preparation
 
-The training data is from the [EgoHOS](https://github.com/owenzlz/EgoHOS) dataset. The test dataset consists of two types: EgoHOS dataset and mini-HOI4D dataset. You can download these two datasets through this [link](https://drive.google.com/file/d/19A47SlqjOLw7lJJLhTxWuehXfWrAt9Sw/view?usp=drive_link).
+The training data is from the [EgoHOS](https://github.com/owenzlz/EgoHOS) dataset. The test dataset consists of two types: the EgoHOS dataset and the mini-HOI4D dataset. You can download these two datasets through this [link](https://drive.google.com/file/d/19A47SlqjOLw7lJJLhTxWuehXfWrAt9Sw/view?usp=drive_link).
+The mini-HOI4D dataset is also uploaded to Huggingface. You can find it [here](https://huggingface.co/datasets/yuki3585/mini-HOI4D).
 
-After downloading and unziping the file, the structure of the data folder should be organized as follows,
+After downloading and unzipping the file, the structure of the data folder should be organized as follows,
 ```
 - train
 	|- image
@@ -108,7 +108,7 @@ Download this repo:
 cd ..
 git clone https://github.com/yuggiehk/CaRe-Ego.git
 ```
-Then copy each file in Care-Ego to corresponding mmsegmentation folder (file in CaRe-Ego            --->   MMsegmentation folder):
+Then copy each file in Care-Ego to the corresponding mmsegmentation folder (file in CaRe-Ego            --->   MMsegmentation folder):
 ```
 CaRe-Ego/configs/CaRego.py  --->  mmsegmentation/configs/
 ```
@@ -163,7 +163,7 @@ python setup.py install
 Download the pretrained model [here](https://drive.google.com/file/d/1e8Te2B_iPB-2tDP445J_MDaMaEcuU0uP/view?usp=drive_link). And replace the 'pretrained' in 'model' in CaRego.py config file with this path.
 
 ### Training
-Replace the dataset root in config file to your own path and then you can train our model.
+Replace the dataset root in the config file with your own path, and then you can train our model.
 
 If you use one GPU, run:
 ```
@@ -175,7 +175,8 @@ If you use multiple GPUs, run:
 bash tools/dist_train.sh  configs/CaRego.py 4
 ```
 ### Inference
-We save our best ckpt in mIoU [here](https://drive.google.com/file/d/1F8QyhSeHaJfS7QLRfMKdgTVKa69JRp-i/view?usp=drive_link).
+We save our best ckpt in mIoU [Goodle drive](https://drive.google.com/file/d/1F8QyhSeHaJfS7QLRfMKdgTVKa69JRp-i/view?usp=drive_link) and [Hugginface](https://huggingface.co/yuki3585/CareEgo).
+
 
 Download the best ckpt, and perform:
 ```
@@ -189,7 +190,7 @@ The research work was conducted in the JC STEM Lab of Machine Learning and Compu
 The code of the CaRe-Ego is built upon the [MMsegmentation](https://github.com/open-mmlab/mmsegmentation) codebase, thanks for their work.
 
 ## License
-Our code is distributed under the Apache-2.0 license. See LICENSE.txt file for more information.
+Our code is distributed under the Apache-2.0 license. See the LICENSE.txt file for more information.
 
 
 
